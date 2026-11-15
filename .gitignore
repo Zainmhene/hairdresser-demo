@@ -1,0 +1,14 @@
+# Computer junk that should never be committed
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Installed packages and local secrets
+node_modules/
+.env
+.env.*
