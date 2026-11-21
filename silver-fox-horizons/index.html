@@ -7,13 +7,17 @@
 <meta name="description" content="Silver Fox Horizons is an international strategic advisory firm partnering with governments, institutions and businesses to strengthen state capacity, elevate global influence and unlock investment opportunities across Africa.">
 <!-- DRAFT: remove this line when the site goes live so Google can list it -->
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="theme-color" content="#08080a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Silver Fox Horizons | International Strategic Advisory">
 <meta property="og:description" content="Partnering with governments, institutions and businesses to strengthen state capacity, elevate global influence and unlock investment opportunities across Africa.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3Cpath d='M4 19.5h24' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080a'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3Cpath d='M4 19.5h24' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Runs before the page paints, so the opening animation starts from a composed first frame */
+(function(){var r=document.documentElement;r.classList.add('js');try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)r.classList.add('anim');}catch(e){}})();
+</script>
 <style>
 /* ---------- Typefaces (hosted with the site, no outside requests) ---------- */
 @font-face{font-family:"Instrument Serif";src:url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
@@ -22,14 +26,13 @@
 
 /* ---------- Design tokens ---------- */
 :root{
-  --ink:#0a0a0b;            /* page black */
-  --ink-raise:#101012;      /* slightly lifted black */
-  --text:#efeeea;           /* warm white */
-  --text-soft:#b9b9b6;      /* body copy on black */
-  --muted:#8b8c8f;          /* labels on black */
-  --silver:#c9ccd1;         /* the one accent */
+  --ink:#08080a;            /* page black */
+  --text:#f1f0ec;           /* warm white */
+  --text-soft:#bdbdba;      /* body copy on black */
+  --muted:#8f9094;          /* labels on black */
+  --silver:#cfd3d9;         /* the one accent */
   --line:rgba(255,255,255,.13);
-  --line-strong:rgba(255,255,255,.28);
+  --line-strong:rgba(255,255,255,.3);
   --paper:#f2f0eb;          /* the single light band */
   --paper-text:#0e0e10;
   --paper-soft:#4c4c50;
@@ -40,6 +43,8 @@
   --max:1320px;
   --section:clamp(88px,13vw,184px);
   --ease:cubic-bezier(.2,.7,.2,1);
+  --expo:cubic-bezier(.16,1,.3,1);
+  --quint:cubic-bezier(.22,1,.36,1);
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -50,7 +55,7 @@ ul,ol{padding:0;list-style:none}
 a{color:inherit;text-decoration:none}
 img,svg,canvas{display:block}
 ::selection{background:var(--silver);color:var(--ink)}
-:focus-visible{outline:2px solid var(--silver);outline-offset:4px;border-radius:2px}
+:focus-visible{outline:2px solid var(--silver);outline-offset:4px;border-radius:4px}
 
 .wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
 .skip{position:absolute;left:var(--gutter);top:-80px;z-index:100;background:var(--text);color:var(--ink);padding:12px 18px;font-size:.875rem;font-weight:500;transition:top .2s}
@@ -60,25 +65,28 @@ img,svg,canvas{display:block}
 .label{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .label b{font-weight:500;color:var(--silver);margin-right:.9em;font-variant-numeric:tabular-nums}
 
+/* Frosted glass surface, used for the second button and the hero cards */
+.glass{background:rgba(14,15,18,.42);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13),inset 0 1px 0 rgba(255,255,255,.2)}
+
 /* ---------- Header ---------- */
 .header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background-color .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
-.header.is-stuck{background:rgba(10,10,11,.86);-webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);border-bottom-color:var(--line)}
+.header.is-stuck{background:rgba(8,8,10,.8);-webkit-backdrop-filter:saturate(140%) blur(16px);backdrop-filter:saturate(140%) blur(16px);border-bottom-color:var(--line)}
 .header__in{display:flex;align-items:center;justify-content:space-between;height:76px}
 .brand{display:inline-flex;align-items:center;gap:14px;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;min-height:44px}
 .brand svg{width:26px;height:26px;flex:none}
 .nav{display:flex;align-items:center;gap:clamp(22px,3vw,44px)}
-.nav a:not(.btn){position:relative;font-size:.84rem;color:var(--text-soft);padding:12px 0;transition:color .25s}
+.nav a:not(.btn){position:relative;font-size:.84rem;color:rgba(255,255,255,.78);padding:12px 0;transition:color .25s}
 .nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:var(--text);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.nav a:not(.btn):hover{color:var(--text)}
+.nav a:not(.btn):hover{color:#fff}
 .nav a:not(.btn):hover::after{transform:scaleX(1)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 26px;border:1px solid var(--line-strong);font-size:.84rem;font-weight:500;letter-spacing:.02em;color:var(--text);transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 30px;border-radius:999px;font-size:.86rem;font-weight:500;letter-spacing:.01em;color:var(--text);transition:background-color .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer}
 .btn svg{width:15px;height:15px;transition:transform .35s var(--ease)}
-.btn:hover{background:var(--text);border-color:var(--text);color:var(--ink)}
 .btn:hover svg{transform:translateX(4px)}
-.btn--solid{background:var(--text);border-color:var(--text);color:var(--ink)}
-.btn--solid:hover{background:transparent;color:var(--text);border-color:var(--line-strong)}
-.btn--small{min-height:42px;padding:0 20px}
+.btn--solid{background:#fff;color:#08080a;box-shadow:0 0 22px rgba(255,255,255,.26),0 0 60px rgba(255,255,255,.1)}
+.btn--solid:hover{background:#fff;box-shadow:0 0 28px rgba(255,255,255,.42),0 0 80px rgba(255,255,255,.16)}
+.btn--glass:hover{background:rgba(255,255,255,.12)}
+.btn--small{min-height:42px;padding:0 22px}
 
 .menu-btn{display:none;width:48px;height:48px;margin-right:-12px;background:none;border:0;color:var(--text);cursor:pointer;position:relative}
 .menu-btn span{position:absolute;left:12px;right:12px;height:1px;background:currentColor;transition:transform .35s var(--ease),top .35s var(--ease)}
@@ -87,25 +95,33 @@ img,svg,canvas{display:block}
 .menu-btn[aria-expanded="true"] span:first-child{top:24px;transform:rotate(45deg)}
 .menu-btn[aria-expanded="true"] span:last-child{top:24px;transform:rotate(-45deg)}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
-.hero__globe{position:absolute;z-index:-1;top:55%;right:-4vw;width:min(86vh,50vw);aspect-ratio:1;transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity 1.6s ease .2s;
-  -webkit-mask-image:linear-gradient(to right,transparent 2%,#000 22%);
-          mask-image:linear-gradient(to right,transparent 2%,#000 22%)}
-.hero__globe.is-ready{opacity:1}
-.hero__globe canvas{width:100%;height:100%}
-.hero::after{content:"";position:absolute;z-index:-1;inset:auto 0 0 0;height:22%;background:linear-gradient(to top,var(--ink) 8%,transparent);pointer-events:none}
-.hero__in{padding-top:128px;padding-bottom:clamp(36px,6vh,72px)}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,min(7vw,11.5vh),6.4rem);line-height:1;letter-spacing:-.012em;margin-top:clamp(20px,3vh,32px)}
-.hero h1 span{display:block}
+/* ---------- Hero: Earth from orbit, dawn arriving over Africa ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;background:var(--ink)}
+.hero__earth,.hero__arcs{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 1.8s ease}
+.hero__earth{z-index:-3}
+.hero__arcs{z-index:-2}
+.hero.is-live .hero__earth,.hero.is-live .hero__arcs{opacity:1}
+/* keeps the words readable where they sit over the planet, and blends the hero into the page below */
+.hero__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(to top,var(--ink) 0,rgba(8,8,10,0) 20%),
+  linear-gradient(to bottom,rgba(8,8,10,.62) 0,rgba(8,8,10,0) 150px),
+  linear-gradient(90deg,rgba(8,8,10,.72) 0,rgba(8,8,10,.5) 34%,rgba(8,8,10,0) 60%)}
+.hero.no-gl{background:radial-gradient(120% 90% at 78% 58%,#1b2430 0,#0c0f14 38%,var(--ink) 70%)}
+.hero__in{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:104px;padding-bottom:28px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,min(6.6vw,10.4vh),6rem);line-height:1;letter-spacing:-.012em;margin-top:clamp(18px,2.8vh,28px);text-shadow:0 0 70px rgba(255,255,255,.2)}
 .hero h1 em{font-style:italic;color:var(--silver)}
-.hero__lead{max-width:39ch;margin-top:clamp(24px,4vh,40px);font-size:clamp(1.0625rem,1.35vw,1.25rem);line-height:1.55;color:var(--text-soft)}
-.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(28px,4.5vh,44px)}
-.hero__foot{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:clamp(44px,8vh,96px);padding-top:22px;border-top:1px solid var(--line)}
-.hero__foot ul{display:flex;flex-wrap:wrap;gap:6px 0}
-.hero__foot li+li::before{content:"";display:inline-block;width:22px;height:1px;background:var(--line-strong);vertical-align:middle;margin:0 16px}
-.scroll-cue{display:inline-flex;align-items:center;gap:12px;min-height:44px;white-space:nowrap}
-.scroll-cue i{display:block;width:1px;height:28px;background:linear-gradient(var(--silver),transparent)}
+.hero__eyebrow{color:rgba(255,255,255,.72)}
+.hero__lead{max-width:36ch;margin-top:clamp(22px,3.6vh,36px);font-size:clamp(1.0625rem,1.3vw,1.2rem);line-height:1.55;color:rgba(255,255,255,.8)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(26px,4.2vh,40px)}
+.m,.l{display:block}
+
+.hero__cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-bottom:clamp(24px,4vh,40px)}
+.card{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:16px;padding:20px 22px 22px;border-radius:16px;transition:background-color .35s var(--ease),box-shadow .35s var(--ease)}
+.card:hover{background:rgba(30,32,38,.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),inset 0 1px 0 rgba(255,255,255,.34)}
+.card__no{font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--silver)}
+.card__t{font-size:.9rem;line-height:1.4;color:#fff;max-width:26ch}
+.card svg{width:16px;height:16px;margin-top:3px;color:rgba(255,255,255,.6);transition:transform .35s var(--ease),color .35s}
+.card:hover svg{transform:translate(3px,-3px);color:#fff}
 
 /* ---------- Sections ---------- */
 .section{padding-block:var(--section)}
@@ -147,7 +163,7 @@ img,svg,canvas{display:block}
 .who p{color:var(--paper-soft);font-size:1rem;max-width:30em}
 
 /* Contact */
-.contact{text-align:left;position:relative;overflow:hidden}
+.contact{position:relative;overflow:hidden}
 .contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,8.6vw,8.25rem);line-height:.96;letter-spacing:-.018em;margin-top:28px}
 .contact h2 em{font-style:italic;color:var(--silver)}
 .contact__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px;margin-top:clamp(40px,6vw,80px);padding-top:32px;border-top:1px solid var(--line)}
@@ -162,13 +178,36 @@ img,svg,canvas{display:block}
 .footer li a:hover{color:var(--text)}
 .footer__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;margin-top:clamp(48px,7vw,88px);padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 
-/* ---------- Motion (only when JavaScript is running) ---------- */
+/* ---------- Motion ---------- */
+/* Sections further down fade up as they enter the screen */
 .js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
 .js [data-reveal].is-in{opacity:1;transform:none}
-.js .hero h1 span{opacity:0;transform:translateY(.35em);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
-.js .hero h1 span:nth-child(2){transition-delay:.12s}
-.js .hero h1 span:nth-child(3){transition-delay:.24s}
-.js .hero.is-in h1 span{opacity:1;transform:none}
+
+/* Opening sequence for the hero: type rises out of a mask, the rest lifts into place */
+@keyframes ent-reveal{from{transform:translateY(118%)}to{transform:none}}
+@keyframes ent-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes ent-fade{from{opacity:0}to{opacity:1}}
+.anim .m{overflow:hidden;padding:.1em .12em .18em 0;margin:-.1em 0 -.18em}
+.anim .m .l{transform:translateY(118%)}
+.anim .header__in,.anim .hero__eyebrow,.anim .hero__lead,.anim .hero__cta,.anim .card{opacity:0}
+.anim.play .header__in{animation:ent-fade 1s ease .1s both}
+.anim.play .hero__eyebrow{animation:ent-rise .8s var(--quint) .2s both}
+.anim.play .m .l{animation:ent-reveal 1.15s var(--expo) both}
+.anim.play h1 .m:nth-child(1) .l{animation-delay:.3s}
+.anim.play h1 .m:nth-child(2) .l{animation-delay:.42s}
+.anim.play h1 .m:nth-child(3) .l{animation-delay:.54s}
+.anim.play .hero__lead{animation:ent-rise .9s var(--quint) .95s both}
+.anim.play .hero__cta{animation:ent-rise .9s var(--quint) 1.1s both}
+.anim.play .card{animation:ent-rise .9s var(--quint) both}
+.anim.play .card:nth-child(1){animation-delay:1.3s}
+.anim.play .card:nth-child(2){animation-delay:1.4s}
+.anim.play .card:nth-child(3){animation-delay:1.5s}
+
+/* ---------- Short screens: the three cards give way so the headline keeps its room ---------- */
+@media (min-width:901px) and (max-height:760px){
+  .hero__cards{display:none}
+  .hero__in{padding-bottom:48px}
+}
 
 /* ---------- Tablet and phone ---------- */
 @media (max-width:900px){
@@ -189,19 +228,17 @@ img,svg,canvas{display:block}
   .who h3{margin-top:22px}
   .footer__top{grid-template-columns:1fr 1fr}
   .footer__top>div:first-child{grid-column:1/-1}
-  .hero__globe{top:58px;right:auto;left:50%;width:min(100vw,560px);transform:translateX(-50%);
-    -webkit-mask-image:linear-gradient(to bottom,#000 66%,transparent 94%);
-            mask-image:linear-gradient(to bottom,#000 66%,transparent 94%)}
-  .hero{justify-content:flex-start}
-  .hero__in{padding-top:calc(58px + min(86vw,480px))}
-  .hero__foot .scroll-cue{display:none}
-  .hero::after{display:none}
+
+  /* the planet sits above the words instead of beside them */
+  .hero__in{justify-content:flex-start;padding-top:calc(40px + min(93vw,520px));padding-bottom:20px}
+  .hero__shade{background:linear-gradient(to bottom,rgba(8,8,10,0) calc(34px + min(84vw,470px)),var(--ink) calc(54px + min(102vw,570px)))}
+  .hero__cards{grid-template-columns:1fr;gap:10px;padding-bottom:36px}
+  .card{padding:16px 18px}
+  .card__t{max-width:none}
 }
 @media (max-width:520px){
   .brand{letter-spacing:.2em;font-size:.68rem;gap:11px}
-  .hero__cta .btn{flex:1 1 150px;padding:0 14px}
-  .hero__foot ul{letter-spacing:.14em;font-size:.66rem}
-  .hero__foot li+li::before{width:10px;margin:0 9px}
+  .hero__cta .btn{flex:1 1 150px;padding:0 16px}
   .contact__row .btn{width:100%}
 }
 @media (prefers-reduced-motion:reduce){
@@ -225,7 +262,7 @@ img,svg,canvas{display:block}
       <a href="#mandate">Mandate</a>
       <a href="#expertise">Expertise</a>
       <a href="#partners">Who we work with</a>
-      <a class="btn btn--small" href="#contact">Contact</a>
+      <a class="btn btn--solid btn--small" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -234,27 +271,42 @@ img,svg,canvas{display:block}
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top" aria-labelledby="hero-title">
-    <div class="hero__globe" id="globeBox" aria-hidden="true"><canvas id="globe"></canvas></div>
+    <canvas class="hero__earth" id="earth" aria-hidden="true"></canvas>
+    <canvas class="hero__arcs" id="arcs" aria-hidden="true"></canvas>
+    <div class="hero__shade" aria-hidden="true"></div>
+
     <div class="wrap hero__in">
-      <p class="label">International Strategic Advisory</p>
+      <p class="label hero__eyebrow">International Strategic Advisory</p>
       <h1 id="hero-title">
-        <span>Strengthening states.</span>
-        <span>Elevating influence.</span>
-        <span><em>Unlocking investment.</em></span>
+        <span class="m"><span class="l">Strengthening states.</span></span>
+        <span class="m"><span class="l">Elevating influence.</span></span>
+        <span class="m"><span class="l"><em>Unlocking investment.</em></span></span>
       </h1>
-      <p class="hero__lead" data-reveal style="--d:380ms">Strategic counsel for governments, institutions and businesses, at the intersection of statecraft, international positioning and investment diplomacy across Africa.</p>
-      <div class="hero__cta" data-reveal style="--d:480ms">
+      <p class="hero__lead">Strategic counsel for governments, institutions and businesses, at the intersection of statecraft, international positioning and investment diplomacy across Africa.</p>
+      <div class="hero__cta">
         <a class="btn btn--solid" href="#expertise">Our expertise
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5"/></svg>
         </a>
-        <a class="btn" href="#contact">Start a conversation</a>
+        <a class="btn btn--glass glass" href="#contact">Start a conversation</a>
       </div>
-      <div class="hero__foot" data-reveal style="--d:600ms">
-        <ul class="label" aria-label="Who we partner with">
-          <li>Governments</li><li>Institutions</li><li>Businesses</li>
-        </ul>
-        <a class="label scroll-cue" href="#mandate">Scroll <i></i></a>
-      </div>
+    </div>
+
+    <div class="wrap hero__cards">
+      <a class="card glass" href="#expertise">
+        <span class="card__no" aria-hidden="true">01</span>
+        <span class="card__t">Statecraft, Governance &amp; Institutional Transformation</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3.5 12.5l9-9M5.5 3.5h7v7"/></svg>
+      </a>
+      <a class="card glass" href="#expertise">
+        <span class="card__no" aria-hidden="true">02</span>
+        <span class="card__t">Nation Branding, Strategic Communications &amp; Global Positioning</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3.5 12.5l9-9M5.5 3.5h7v7"/></svg>
+      </a>
+      <a class="card glass" href="#expertise">
+        <span class="card__no" aria-hidden="true">03</span>
+        <span class="card__t">Investment Diplomacy, Market Access &amp; Strategic Partnerships</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3.5 12.5l9-9M5.5 3.5h7v7"/></svg>
+      </a>
     </div>
   </section>
 
@@ -404,7 +456,6 @@ img,svg,canvas{display:block}
 <script>
 (function () {
   var root = document.documentElement;
-  root.classList.add('js');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -429,9 +480,19 @@ img,svg,canvas{display:block}
   });
   window.matchMedia('(min-width: 901px)').addEventListener('change', function () { setMenu(false); });
 
+  /* Opening sequence: wait for the typefaces (half a second at most), then play once */
+  if (root.classList.contains('anim')) {
+    var started = false;
+    var go = function () {
+      if (started) return; started = true;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('play'); }); });
+      setTimeout(function () { root.classList.remove('anim'); root.classList.remove('play'); }, 3400);
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+    setTimeout(go, 500);
+  }
+
   /* Fade sections in as they enter the screen */
-  var hero = document.getElementById('top');
-  requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('is-in'); }); });
   var items = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -444,129 +505,279 @@ img,svg,canvas{display:block}
     items.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* Hero globe: the world drawn in fine dots, turning to rest on Africa, which then lights up */
-  var box = document.getElementById('globeBox'), cv = document.getElementById('globe');
-  var ctx = cv.getContext && cv.getContext('2d');
-  if (!ctx || !window.Path2D) return;
-  /* Dot map data, generated from Natural Earth (public domain): l = land, a = Africa */
-  var MAP = {"s":1.2,"r":[3,9,16,22,28,34,41,47,53,59,65,72,78,84,90,96,102,108,113,119,125,131,136,142,147,153,158,163,169,174,179,184,189,194,198,203,208,212,217,221,225,229,233,237,241,245,248,252,255,258,261,264,267,270,273,275,278,280,282,284,286,288,290,291,293,294,295,296,297,298,299,299,300,300,300,300,300,300,299,299,298,297,296,295,294,293,291,290,288,286,284,282,280,278,275,273,270,267,264,261,258,255,252,248,245,241,237,233,229,225,221,217,212,208,203,198,194,189,184,179,174,169,163,158,153,147,142,136,131,125,119,113,108,102,96,90,84,78,72,65,59,53,47,41,34,28,22,16,9,3],"l":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAwAAAAAAAAAAAAAAAAAAAAAAAAAAwAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAHwAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAA+AAAAAAAAAAAAAAAAAAAAAACAAMAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAABgAEAAAAAAAAAAD4AwAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAP4AAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAA+D8AAAAAAAAAAAAAAAAAAAAAHwCAAQAAAAAAAAAA/B8AAAAAAAAAAAAAAAAAAAAAfwCAAAAAAAAAAAAA8H8AAAAAAAAAAAAAAAAAAAAA8A8ACAAAAAAAAAAAAPx/AAAAAAAABgAAAAAAAAA4APoPAAAAAAAAAAAAAADw/wEAAAAAAPgBAAAAAAAAgB/w/wAAAAAAAAAAAAAAAP5/AAAAAAAA/wAAAAAAAADgf/7/AAAAAAAAAAAAAAAA/v8AAAAAAAD+AwAAAAAAAID///8DAAAAAAAAAAAAAADw/wcAAAAAAPA/AAAAAAAAAPj//38AAAAAAAAAAAAAAAD8/wMAAAAAAPw/AAAAAAAAAPz//38AAAAAAAAAAAAAAAD4/w8AAAAAAPj/AAAAAAAAAPD///8BAAAAAAAAAAAAAACA//8AAAAAAID/DwAAAAAAAAD8//9/AAAAAAAAAAAAAAAAwP//AAAAAACA/z9gAAAAAAAA/P//fwAAAAAAAAAAAAAAAAD//wcAAAAAAP//gQMAAAAAAPD///8BAAAAAAAAAAAAAAAA8P//AwAAAADg/x94AAAAAAAA/P//PwAEAAAAAAAAAAAAAAD8//8BAAAAAPj/D3gAAAAAAAD4//8fAAIAAAAAAAAAAAAAAPj//wcAAAAA8P8f4AAAAAAAAAD//z8AAAAAAAAAAAAAAAAAwP//PwAAAACA//8DDwAAAAAAAOD//wAAAAAAAAAAAAAAAAAA/v//BwAAAAD4///gAQAAAAAAAPj/PQAAAAAAAAAAAAAAAADA////AwAAAAD8///hAQAAAAAAAPB/HAAAAAAAAAAAAAAAAADg////BwAAAADw//8HBwAAAAAAAIB/cAAAAQAAAAAAAAAAAACA////HwAAAACA//8fGAAAAAAAAADggwEAAAAAAAAAAAAAAAAA/P///wMAAAAA+P//AwEAAAAAAAAA+BAAAAAAAAAAAAAAAAAAgP////8AAAAAAP7/fwAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAPD///9/AAAAAID//x8AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAD4////fwAAAACA//8PAAAAAAAAABAIACMAAQAAAAAAAAAAAAAA+P////8AAAAAgP//HwAAAAAAAIAHAMA3gAAAAAAAAAAAAAAAAPj/////AQAAAAD//z8AAAAAAADgAAAA/gAAAAAAAAAAAAAAAADg/////wcAAAAA+P//AQAAAAAAgABQAPhDAAAAAAAAAAAAAAAAAP////8PAAAAAOD//w8AAAAAAAAGAAD4DwYAAAAAAAAAAAAAAADw////PwAAAACA////AAAAAAAAcPgUZB8gAAAAAAAAAAAAAAAAAP///z8AAAAAAPj//x8AAAAAAICDzwAmAAAAAAAAAAAAAAAAAADw//8/AAAAAADA////AwAAAAAAHPwBIAAAAAAAAAAAAAAAAAAAAP///wEAAAAAAPj//38AAAAAAMDBnycAAAAAAAAAAAAAAAAAAADg//8fAAAAAACA////HwAAAAAALvwBAgAAAAAAAAAAAAAAAAAAAPz//wEAAAAAAPj///8DAAAAALABHgAAAAAAAAAAAAAAAAAAAADA//8PAAAAAADA////PwAAAADADOABAAAAAAAAAAAAAAAAAAAAAP7/PwAAAAD+wf////8DAAAAAGAADgAAAAAAAAAAAAAAAAAAAADw/w8AAAAA+P//////HwAAwACAABAYAAAAAAAAAAAAAAAAAAAA5P8fAAAAAPj//////38AAIABgAAANAAAAAAAAAAAAAAAAAAAALL/DwAAAAD4//////9/AABgAYAQACAAAAAAAAAAAAAAAAAAAIAB/woAAAAA/P//////fwAAMABAGAAEAAAAAAAAAAAAAAAAAADAAAkAAAAAgP//////fzAAABwAAB8ABQAAAAAAAAAAAAAAAAAAPAAAAAAAAPD//////x8AAMAHAPQDAAAAAAAAAAAAAAAAAAAA4AMAAAAAAAD//////38PAAA8AOA/gAMAAAAAAAAAAAAAAAAA4B8AAAAAAAD8///////9AQDwAID/AAIAAAAAAAAAAAAAAAAA/AMAAAAAAADw///////4BwDwA7B/AAYAAAAAAAAAAAAAAAAA/wMAAAAAAAD4/////3/8DwD8A/gfAAEAAAAAAAAAAAAAAAD48wB0AAAAAAD//////8f/A4B/gP8JAAAAAAAAAABAAAAAAOAPBgABAAAAAPj/////H/8fAP4H/mcAAAAAAAAAAAAAAAAAgB8YMAAAAAAA8P////8//38A/R/+TwAAAAAAAAAAAAAAAADAD4AOAAAAAAD4/////8//P8D/v///AAAAAAAAAAAAAAAAAPkDAAAAAAAAAP///////P8B/v///z8BAAAAAAAAAAAAAADkDwAIAAAAAAD4//////kfAf7/////BQAAAAAAAAAAAAAA9B8AAgAAAAAA+P/////8H/7//////wAAAAAAAAAAAAAAQP4DYAAAAAAAAP/////nf+z//////w8AAAAAAAAAAAAAAP0fgAEAAAAAAPj///////z//////x8AAAAAAAAAAAAAgP4/wwAAAAAAAPj/////n////////wcAAAAAAAAAAAAA6P//DwAAAAAAgP//9///////////HwAAAAAAAAAAAADw//8fAAAAAAAA///hgP////////8fCAAAAAAAAAAAAPz//w8AAAAAAMD/DwDg/////////4EAAAAAAAAAAADw////AAAAAAAA/h8AgP////////8BDwAAAAAAAAAA/P///wEAAAAAAPkPIOj///////8/mA8AAAAAAAAAwP///x8AAAAAAAh/QGj/////////MTgAAAAAAAAAwP///w8AAAAAAD6AMf9//P////8fBgQAAAAAAAAA/v///wEAAAAA+AGQ+P/x/////z8IEAAAAAAAAAD+////AQAAAAD4QeT8//z/////3wMEAAAAAAAAwP///38AAAAAwB84n+Pz//////8fAAAAAAAAAMD///9/AAAAAOAPxgfw+P//////BwUAAAAAAAD4////BwAAAADgk3/g8///////fxgAAAAAAAD4////XwAAAAD45x/9/P//////jwAAAAAAAMD/////AwAAAOD///Lj//////8/AAAAAAAAoP///38wAAAA/P///////////wMAAAAAAID+//+/OQAAAP7///////////8FAAAAAADg////LwIAAAD///////////8vAAAAAADg/////wEAAOD///////////8FAAAAAAD+///8PwAAIPf//////////wcEAAAAoP//f/8PAADo/P////////9/YAAAAQD+///+DwAA0BD9////////AzgAgAHA//+HfwAAAIbg////////D+AAAATg//+BPwAAgKH5////////AAcAIMD//wF/AAAAgOH///////8AAQAu/P8f8AAAAAAf////////XwQAX///H3AAAgDA9////////8cB+P//f/AABwDA9////////+8B/v//HxBwAAC8/////////wf8//9vHDxwAO////////+f/f//P1x84ADu/f//////P/7//8fjBwD47b//////h/9/8jX8AIB//f////8H/7+pHfwBwA/Y////f/AAnn78BwAH4P//fwAA8O2DfwAAiP7/HwAA+HfwDwCAyP8jAAAwCPAPAADwBwAAAPThPwBA4AMFABCF/wEABg4AABDkPxAAEAAA4PcPBgABAADeHwQgAADg/wAAAAA4AwAAAIABAAAAAAAAAAAAAAAA","a":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPw/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/DwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA/z9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//gQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg/x94AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj/D3gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8P8f4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA//8DDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4///gAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8///hAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADw//8HBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA//8fGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+P//AwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7/fwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID//x8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA//8PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP//HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//z8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+P//AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOD//w8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj//x8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA////AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj//38AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA////HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj///8DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA////PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+wf////8DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+P//////HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj//////38AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4//////9/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/P//////fwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP//////fzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPD//////x8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////38AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8//////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADw//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4/////38AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj/////HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8P////8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4/////w8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4/////wEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+P////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////8HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj///8fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPj///8PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP//938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///hAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMD/DwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/h8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPkPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"};
-  var RAD = Math.PI / 180, HOME_LON = 12, HOME_LAT = 3;
-  var home = [Math.cos(HOME_LAT * RAD) * Math.sin(17 * RAD), Math.sin(HOME_LAT * RAD), Math.cos(HOME_LAT * RAD) * Math.cos(17 * RAD)];
-  var world = [], africa = [];
-  (function decode() {
-    function bytes(b64) { var s = atob(b64), o = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) o[i] = s.charCodeAt(i); return o; }
-    var L = bytes(MAP.l), A = bytes(MAP.a), k = 0, lat = -90 + MAP.s / 2, far = 0;
-    for (var r = 0; r < MAP.r.length; r++, lat += MAP.s) {
-      var n = MAP.r[r], cl = Math.cos(lat * RAD), sl = Math.sin(lat * RAD);
-      for (var j = 0; j < n; j++, k++) {
-        if (!(L[k >> 3] >> (k & 7) & 1)) continue;
-        var lon = (-180 + (j + 0.5) * 360 / n) * RAD;
-        var p = [cl * Math.sin(lon), sl, cl * Math.cos(lon), 0];
-        if (A[k >> 3] >> (k & 7) & 1) {
-          p[3] = Math.acos(Math.min(1, p[0] * home[0] + p[1] * home[1] + p[2] * home[2]));
-          if (p[3] > far) far = p[3];
-          africa.push(p);
-        } else world.push(p);
+  /* =====================================================================
+     HERO: the Earth seen from orbit. It opens at night over Africa, then
+     the sunrise sweeps across the continent and lines of connection reach
+     out to the rest of the world. Drawn live in the browser (WebGL) from
+     satellite imagery, so it stays sharp on any screen.
+     ===================================================================== */
+  var hero = document.getElementById('top'), ec = document.getElementById('earth'), ac = document.getElementById('arcs');
+  var gl = null, actx = ac.getContext && ac.getContext('2d');
+  try { gl = ec.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'high-performance' }) || ec.getContext('experimental-webgl'); } catch (e) {}
+  if (!gl || !actx) { hero.classList.add('no-gl'); return; }
+
+  var CAM = 5.0;                       /* camera distance, in Earth radii */
+  var RAD = Math.PI / 180;
+  var VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var FRAG = [
+    '#ifdef GL_FRAGMENT_PRECISION_HIGH',
+    'precision highp float;',
+    '#else',
+    'precision mediump float;',
+    '#endif',
+    'uniform vec2 uC;uniform float uR;uniform float uDpr;uniform vec2 uLon;uniform vec2 uLat;uniform vec3 uSun;uniform float uTime;',
+    'uniform sampler2D uDay;uniform sampler2D uNight;uniform sampler2D uCloud;uniform sampler2D uWater;',
+    'const float D=' + CAM.toFixed(1) + ';',
+    'const vec3 INK=vec3(.0314,.0314,.0392);',
+    'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+    'void main(){',
+    '  vec2 q=(gl_FragCoord.xy-uC)/uR;',
+    '  vec3 ro=vec3(0.,0.,D);',
+    '  vec3 rd=normalize(vec3(q/sqrt(D*D-1.),-1.));',
+    '  float b=dot(ro,rd);',
+    '  float disc=b*b-(D*D-1.);',
+    '  float dist=sqrt(max(D*D-b*b,0.));',          /* how close this line of sight passes to the centre: 1 at the edge of the planet */
+    /* --- space: a few faint stars and the glow of the atmosphere --- */
+    '  vec2 cell=floor(gl_FragCoord.xy/(54.*uDpr));',
+    '  vec2 sp=(cell+vec2(hash(cell),hash(cell+7.3)))*54.*uDpr;',
+    '  float star=smoothstep(1.3*uDpr,0.,length(gl_FragCoord.xy-sp))*step(.62,hash(cell+3.1))*(.12+.5*hash(cell+9.7));',
+    '  vec3 pn=(ro-b*rd)/max(dist,.0001);',
+    '  float sunSide=smoothstep(-.45,.6,dot(pn,uSun));',
+    '  float h=max(dist-1.,0.);',
+    '  float halo=exp(-h*46.)*.85+exp(-h*11.)*.2+exp(-h*3.2)*.045;',
+    '  vec3 haloCol=mix(vec3(.16,.25,.5),vec3(.5,.7,1.),sunSide);',
+    '  float dawn=exp(-pow(dot(pn,uSun)/.34,2.));',   /* warm light where the sun grazes the edge */
+    '  haloCol=mix(haloCol,vec3(1.,.62,.36),dawn*.55);',
+    '  vec3 col=INK+vec3(star)*(1.-min(halo*3.,1.))+halo*haloCol*(.17+.83*sunSide);',
+    /* --- the planet --- */
+    '  if(disc>0.){',
+    '    vec3 n=ro+(-b-sqrt(disc))*rd;',
+    '    vec3 a=vec3(n.x,n.y*uLat.x+n.z*uLat.y,-n.y*uLat.y+n.z*uLat.x);',
+    '    vec3 g=vec3(a.x*uLon.x+a.z*uLon.y,a.y,-a.x*uLon.y+a.z*uLon.x);',
+    '    vec2 uv=vec2(atan(g.x,g.z)/6.2831853+.5,.5-asin(clamp(g.y,-1.,1.))/3.1415927);',
+    '    float ndl=dot(n,uSun);',
+    '    float day=smoothstep(-.1,.3,ndl);',
+    '    float diff=pow(max(ndl,0.),.72);',
+    '    vec3 land=texture2D(uDay,uv).rgb;',
+    '    land=mix(vec3(dot(land,vec3(.3,.59,.11))),land,.82);',   /* a touch less saturated: cooler, more silver */
+    '    land=pow(land,vec3(.92))*1.12;',
+    '    float water=texture2D(uWater,uv).r;',
+    '    float cloud=texture2D(uCloud,vec2(uv.x+uTime*.00045,uv.y)).r;',
+    '    cloud=smoothstep(.03,.74,cloud);',
+    '    vec3 surf=land*(.012+1.5*diff);',
+    '    float spec=pow(max(dot(n,normalize(uSun-rd)),0.),38.);',
+    '    surf+=spec*water*vec3(1.,.9,.74)*.55;',                  /* sunlight glinting off the ocean */
+    '    surf=mix(surf,vec3(.97,.98,1.)*(.03+1.32*diff),cloud*.88);',
+    '    float band=exp(-pow((ndl-.07)/.15,2.));',
+    '    surf+=band*vec3(1.,.42,.14)*(.05+.2*cloud);',             /* sunrise colour along the line between night and day */
+    '    vec3 nt=texture2D(uNight,uv).rgb;',
+    '    float glow=smoothstep(.03,.42,max(nt.r,nt.g)-nt.b*.62);',
+    '    vec3 night=glow*vec3(1.,.74,.4)*3.4*(1.-cloud*.6)+nt*vec3(.5,.62,.9)*.12;',   /* city lights, plus a trace of moonlit land */
+    '    vec3 s=surf+night*(1.-day);',
+    '    float fres=pow(1.-max(dot(n,-rd),0.),3.);',
+    '    s+=fres*mix(vec3(.5,.7,1.),vec3(1.,.62,.36),dawn*.5)*(.05+1.05*smoothstep(-.3,.5,ndl));',
+    '    col=mix(col,s,clamp((1.-dist)*uR+.5,0.,1.));',
+    '  }',
+    '  col=col/(1.+col*.18);',                       /* soften the very brightest highlights */
+    '  gl_FragColor=vec4(col,1.);',
+    '}'
+  ].join('\n');
+
+  var prog, U = {}, ready = false;
+  function compile(type, src) {
+    var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  function setup(images) {
+    prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['uC', 'uR', 'uDpr', 'uLon', 'uLat', 'uSun', 'uTime'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+    var aniso = gl.getExtension('EXT_texture_filter_anisotropic');
+    ['uDay', 'uNight', 'uCloud', 'uWater'].forEach(function (name, i) {
+      gl.activeTexture(gl.TEXTURE0 + i);
+      gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, images[i]);
+      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+      gl.uniform1i(gl.getUniformLocation(prog, name), i);
+    });
+  }
+
+  /* Where the planet sits: beside the words on wide screens, above them on phones */
+  var W = 0, H = 0, dpr = 1, cx = 0, cy = 0, R = 0, lonHome = 6, lastW = 0, lastVH = 0;
+  function layout(force) {
+    var vw = window.innerWidth, vh = window.innerHeight, phone = vw <= 900;
+    if (!force && vw === lastW && hero.clientHeight === H && (phone || vh === lastVH)) return;
+    lastW = vw; lastVH = vh;
+    W = hero.clientWidth; H = hero.clientHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (phone) { R = Math.min(vw * 0.53, 290); cx = vw / 2; cy = 54 + R * 0.94; lonHome = 17; }
+    else { R = Math.min(vh * 0.53, vw * 0.36); cx = vw * 0.715; cy = vh * 0.54; lonHome = 7; }
+    ec.width = ac.width = Math.round(W * dpr);
+    ec.height = ac.height = Math.round(H * dpr);
+    gl.viewport(0, 0, ec.width, ec.height);
+    actx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (ready) render(clock());
+  }
+
+  /* The choreography, as a function of time since the imagery finished loading */
+  var view = { sun: [0, 0, 1], sl: 0, cl: 1, st: 0, ct: 1 };
+  var END = 5900;
+  function pose(t) {
+    var a = Math.min(1, Math.max(0, (t - 300) / 5400));
+    var e = a < 0.5 ? 4 * a * a * a : 1 - Math.pow(-2 * a + 2, 3) / 2;   /* slow start, steady sweep, gentle stop */
+    var sunLon = 72 + 74 * (1 - e);             /* the sun starts far to the east and climbs: dawn crosses the continent */
+    var sunLat = 11;
+    var lon = lonHome - 12 * (1 - e), lat = 5;
+    if (t > END && !reduce) {
+      var s = (t - END) / 1000, ramp = Math.min(1, s / 6);
+      lon += 2.6 * Math.sin(s * 0.11) * ramp * ramp;   /* a slow drift so the planet never sits dead still */
+    }
+    view.sl = Math.sin(lon * RAD); view.cl = Math.cos(lon * RAD);
+    view.st = Math.sin(lat * RAD); view.ct = Math.cos(lat * RAD);
+    view.sun = toView([Math.cos(sunLat * RAD) * Math.sin(sunLon * RAD), Math.sin(sunLat * RAD), Math.cos(sunLat * RAD) * Math.cos(sunLon * RAD)]);
+  }
+  function toView(p) {       /* from a place on the globe to where it sits in front of the camera */
+    var x = p[0] * view.cl - p[2] * view.sl, z0 = p[2] * view.cl + p[0] * view.sl;
+    return [x, p[1] * view.ct - z0 * view.st, p[1] * view.st + z0 * view.ct];
+  }
+
+  /* Lines of connection: African capitals and commercial centres to the world's financial and diplomatic hubs */
+  var ROUTES = [
+    [6.45, 3.4, 51.5, -0.13],      /* Lagos to London */
+    [-1.29, 36.8, 25.2, 55.3],     /* Nairobi to Dubai */
+    [5.35, -4.0, 48.86, 2.35],     /* Abidjan to Paris */
+    [-26.2, 28.05, 1.35, 103.8],   /* Johannesburg to Singapore */
+    [9.0, 38.75, 50.85, 4.35],     /* Addis Ababa to Brussels */
+    [-8.84, 13.23, 25.29, 51.53],  /* Luanda to Doha */
+    [-1.95, 30.1, 19.08, 72.88],   /* Kigali to Mumbai */
+    [30.05, 31.25, 46.2, 6.14]     /* Cairo to Geneva */
+  ].map(function (r, i) {
+    function v(lat, lon) { return [Math.cos(lat * RAD) * Math.sin(lon * RAD), Math.sin(lat * RAD), Math.cos(lat * RAD) * Math.cos(lon * RAD)]; }
+    var a = v(r[0], r[1]), b = v(r[2], r[3]);
+    var om = Math.acos(Math.max(-1, Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])));
+    return { a: a, b: b, om: om, lift: 0.05 + 0.2 * om / Math.PI, t0: 3500 + i * 380, phase: (i * 0.37) % 1 };
+  });
+  var SEG = 72, K = Math.sqrt(CAM * CAM - 1);
+  function arcPoint(r, s) {
+    var so = Math.sin(r.om), w1 = Math.sin((1 - s) * r.om) / so, w2 = Math.sin(s * r.om) / so, alt = 1 + r.lift * 4 * s * (1 - s);
+    var v = toView([(r.a[0] * w1 + r.b[0] * w2) * alt, (r.a[1] * w1 + r.b[1] * w2) * alt, (r.a[2] * w1 + r.b[2] * w2) * alt]);
+    /* hidden if the planet is in the way */
+    var dx = v[0], dy = v[1], dz = v[2] - CAM, len = Math.sqrt(dx * dx + dy * dy + dz * dz), bb = CAM * dz / len, disc = bb * bb - (CAM * CAM - 1);
+    var hidden = disc > 0 && (-bb - Math.sqrt(disc)) < len - 0.02;
+    var f = K / (CAM - v[2]);
+    return { x: cx + R * v[0] * f, y: cy - R * v[1] * f, hidden: hidden, a: Math.min(1, Math.max(0, (v[2] - 0.12) / 0.4)) };
+  }
+  function dot(x, y, r, a) { actx.fillStyle = 'rgba(255,255,255,' + a + ')'; actx.beginPath(); actx.arc(x, y, r, 0, 6.2832); actx.fill(); }
+  function ring(x, y, r, a) { actx.strokeStyle = 'rgba(255,255,255,' + a + ')'; actx.lineWidth = 1; actx.beginPath(); actx.arc(x, y, r, 0, 6.2832); actx.stroke(); }
+  function drawArcs(t) {
+    actx.clearRect(0, 0, W, H);
+    actx.lineCap = 'round';
+    for (var i = 0; i < ROUTES.length; i++) {
+      var r = ROUTES[i], p = Math.min(1, Math.max(0, (t - r.t0) / 1900));
+      if (p <= 0) continue;
+      p = 1 - Math.pow(1 - p, 3);
+      var n = Math.max(1, Math.round(SEG * p)), pts = [], j, q;
+      for (j = 0; j <= n; j++) pts.push(arcPoint(r, p * j / n));
+      for (j = 1; j < pts.length; j++) {
+        q = pts[j]; var q0 = pts[j - 1];
+        if (q.hidden || q0.hidden || q.a <= 0) continue;
+        actx.beginPath(); actx.moveTo(q0.x, q0.y); actx.lineTo(q.x, q.y);
+        actx.lineWidth = 3.5; actx.strokeStyle = 'rgba(190,210,255,' + (0.1 * q.a).toFixed(3) + ')'; actx.stroke();
+        actx.lineWidth = 1; actx.strokeStyle = 'rgba(240,243,250,' + (0.66 * q.a).toFixed(3) + ')'; actx.stroke();
+      }
+      /* the two ends */
+      q = pts[0];
+      if (!q.hidden) { dot(q.x, q.y, 2.1, (0.95 * q.a).toFixed(3)); ring(q.x, q.y, 5.5, (0.32 * q.a).toFixed(3)); }
+      if (p >= 1) { q = pts[pts.length - 1]; if (!q.hidden) dot(q.x, q.y, 1.6, (0.8 * q.a).toFixed(3)); }
+      /* a point of light travelling the line, every so often */
+      if (p >= 1 && !reduce) {
+        var c = ((t - r.t0) / 5200 + r.phase) % 1.6;
+        if (c < 1) {
+          q = arcPoint(r, c);
+          if (!q.hidden) {
+            var fade = Math.sin(Math.PI * c) * q.a;
+            var g = actx.createRadialGradient(q.x, q.y, 0, q.x, q.y, 9);
+            g.addColorStop(0, 'rgba(255,255,255,' + (0.9 * fade).toFixed(3) + ')');
+            g.addColorStop(0.3, 'rgba(210,225,255,' + (0.3 * fade).toFixed(3) + ')');
+            g.addColorStop(1, 'rgba(210,225,255,0)');
+            actx.fillStyle = g; actx.beginPath(); actx.arc(q.x, q.y, 9, 0, 6.2832); actx.fill();
+          }
+        }
       }
     }
-    for (var i = 0; i < africa.length; i++) africa[i][3] /= far;   /* 0 at the heart of the continent, 1 at its edge */
-  })();
-
-  var size = 0, R = 0, lon0 = HOME_LON, lat0 = HOME_LAT, lit = 1, visible = true, start = 0, last = 0, raf = 0;
-  var LEVELS = [0.18, 0.28, 0.38, 0.48, 0.56];
-  var INTRO = 4400;
-
-  function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    size = box.clientWidth;
-    cv.width = cv.height = Math.round(size * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    R = size / 2 - 2;
-    draw();
   }
-  function draw() {
-    var c = size / 2, cs = Math.cos(lon0 * RAD), sn = Math.sin(lon0 * RAD), ct = Math.cos(lat0 * RAD), st = Math.sin(lat0 * RAD);
-    var i, p, x, y0, z0, y, z, g;
-    ctx.clearRect(0, 0, size, size);
 
-    /* the sphere itself: a faint body and a thin edge, lit from the upper left */
-    g = ctx.createRadialGradient(c - R * 0.45, c - R * 0.5, 0, c, c, R);
-    g.addColorStop(0, 'rgba(255,255,255,.06)'); g.addColorStop(0.6, 'rgba(255,255,255,.02)'); g.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
-    g = ctx.createLinearGradient(c - R * 0.7, c - R * 0.7, c + R * 0.7, c + R * 0.7);
-    g.addColorStop(0, 'rgba(201,204,209,.6)'); g.addColorStop(0.55, 'rgba(201,204,209,.2)'); g.addColorStop(1, 'rgba(201,204,209,.05)');
-    ctx.strokeStyle = g; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.stroke();
-
-    /* soft light behind Africa */
-    x = home[0] * cs - home[2] * sn; z0 = home[2] * cs + home[0] * sn;
-    y = home[1] * ct - z0 * st; z = home[1] * st + z0 * ct;
-    if (z > 0 && lit > 0) {
-      g = ctx.createRadialGradient(c + R * x, c - R * y, 0, c + R * x, c - R * y, R * 0.66);
-      g.addColorStop(0, 'rgba(226,229,234,' + (0.11 * lit * z).toFixed(3) + ')'); g.addColorStop(1, 'rgba(226,229,234,0)');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
-    }
-
-    /* the rest of the world: quiet silver dots, dimmer towards the edge */
-    var d = Math.max(1.05, R * 0.0036), h = d / 2, paths = [new Path2D(), new Path2D(), new Path2D(), new Path2D(), new Path2D()];
-    for (i = 0; i < world.length; i++) {
-      p = world[i];
-      z0 = p[2] * cs + p[0] * sn; z = p[1] * st + z0 * ct;
-      if (z <= 0.02) continue;
-      x = p[0] * cs - p[2] * sn; y = p[1] * ct - z0 * st;
-      paths[Math.min(4, (z * 5) | 0)].rect(c + R * x - h, c - R * y - h, d, d);
-    }
-    ctx.fillStyle = '#c9ccd1';
-    for (i = 0; i < 5; i++) { ctx.globalAlpha = LEVELS[i]; ctx.fill(paths[i]); }
-
-    /* Africa: brighter, slightly larger dots, lighting up from the centre outwards */
-    var ra = Math.max(0.8, R * 0.0026), w, base, a;
-    ctx.fillStyle = '#f6f5f1';
-    for (i = 0; i < africa.length; i++) {
-      p = africa[i];
-      z0 = p[2] * cs + p[0] * sn; z = p[1] * st + z0 * ct;
-      if (z <= 0.02) continue;
-      x = p[0] * cs - p[2] * sn; y = p[1] * ct - z0 * st;
-      base = LEVELS[Math.min(4, (z * 5) | 0)];
-      w = Math.max(0, Math.min(1, (lit * 1.6 - p[3]) * 2.5));
-      a = base + (0.5 + 0.5 * z - base) * w;
-      ctx.globalAlpha = a;
-      ctx.beginPath(); ctx.arc(c + R * x, c - R * y, ra * (0.8 + 0.2 * w), 0, 6.2832); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
+  function render(t) {
+    pose(t);
+    gl.uniform2f(U.uC, cx * dpr, (H - cy) * dpr);
+    gl.uniform1f(U.uR, R * dpr);
+    gl.uniform1f(U.uDpr, dpr);
+    gl.uniform2f(U.uLon, view.cl, view.sl);
+    gl.uniform2f(U.uLat, view.ct, view.st);
+    gl.uniform3f(U.uSun, view.sun[0], view.sun[1], view.sun[2]);
+    gl.uniform1f(U.uTime, reduce ? 0 : t / 1000);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    drawArcs(t);
   }
-  function pose(t) {
-    if (t < INTRO) {
-      var e = 1 - Math.pow(1 - t / INTRO, 4);          /* fast at first, easing to a stop */
-      lon0 = HOME_LON - 105 * (1 - e);
-      lat0 = HOME_LAT + 20 * (1 - e);
-    } else {
-      var s = (t - INTRO) / 1000, ramp = Math.min(1, s / 5);
-      lon0 = HOME_LON + 5 * Math.sin(s * 0.14) * ramp * ramp;   /* a slow, small sway so it never sits dead still */
-      lat0 = HOME_LAT;
-    }
-    lit = Math.max(0, Math.min(1, (t - 2300) / 2300));
-  }
-  function tick(now) {
+
+  var start = 0, last = 0, raf = 0, visible = true;
+  function clock() { return reduce ? 60000 : performance.now() - start; }
+  function tick() {
     raf = requestAnimationFrame(tick);
-    if (now - last < 30) return;
+    var now = performance.now(), t = now - start;
+    if (t > END + 1000 && now - last < 31) return;   /* full speed for the opening, then about 30 frames a second */
     last = now;
-    pose(now - start);
-    draw();
+    render(t);
   }
   function run() {
     cancelAnimationFrame(raf);
-    if (reduce) return;
-    if (visible && !document.hidden) raf = requestAnimationFrame(tick);
+    if (ready && !reduce && visible && !document.hidden) raf = requestAnimationFrame(tick);
   }
-  if (!reduce) { start = performance.now() + 250; pose(0); }
-  resize();
-  box.classList.add('is-ready');
-  window.addEventListener('resize', resize);
+
+  /* Load the imagery (a lighter set on phones), then begin */
+  var big = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1) > 1500 && window.innerWidth > 900 && gl.getParameter(gl.MAX_TEXTURE_SIZE) >= 4096;
+  var size = big ? '4k' : '2k';
+  var files = ['img/earth-day-' + size + '.jpg', 'img/earth-night-' + size + '.jpg', 'img/earth-clouds-' + size + '.jpg', 'img/earth-water.jpg'];
+  var images = [], pending = files.length, failed = false;
+  files.forEach(function (src, i) {
+    var im = new Image();
+    im.onload = function () {
+      if (--pending || failed) return;
+      try { setup(images); } catch (err) { hero.classList.add('no-gl'); if (window.console) console.warn(err); return; }
+      ready = true;
+      layout(true);
+      start = performance.now();
+      render(clock());
+      hero.classList.add('is-live');
+      run();
+    };
+    im.onerror = function () { failed = true; hero.classList.add('no-gl'); };
+    im.src = src;
+    images[i] = im;
+  });
+
+  window.addEventListener('resize', function () { layout(false); });
   document.addEventListener('visibilitychange', run);
+  ec.addEventListener('webglcontextlost', function (e) { e.preventDefault(); cancelAnimationFrame(raf); ready = false; hero.classList.remove('is-live'); hero.classList.add('no-gl'); });
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; run(); }).observe(hero);
   }
-  run();
 })();
 </script>
 </body>
