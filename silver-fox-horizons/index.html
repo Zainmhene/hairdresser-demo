@@ -106,7 +106,7 @@ img,svg,canvas{display:block}
   linear-gradient(to top,var(--ink) 0,rgba(8,8,10,0) 20%),
   linear-gradient(to bottom,rgba(8,8,10,.62) 0,rgba(8,8,10,0) 150px),
   linear-gradient(90deg,rgba(8,8,10,.72) 0,rgba(8,8,10,.5) 34%,rgba(8,8,10,0) 60%)}
-.hero.no-gl{background:radial-gradient(120% 90% at 78% 58%,#1b2430 0,#0c0f14 38%,var(--ink) 70%)}
+.hero.no-gl{background:radial-gradient(120% 90% at 78% 58%,#232427 0,#101012 38%,var(--ink) 70%)}
 .hero__in{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:104px;padding-bottom:28px}
 .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,min(6.6vw,10.4vh),6rem);line-height:1;letter-spacing:-.012em;margin-top:clamp(18px,2.8vh,28px);text-shadow:0 0 70px rgba(255,255,255,.2)}
 .hero h1 em{font-style:italic;color:var(--silver)}
@@ -545,9 +545,9 @@ img,svg,canvas{display:block}
     '  float sunSide=smoothstep(-.45,.6,dot(pn,uSun));',
     '  float h=max(dist-1.,0.);',
     '  float halo=exp(-h*46.)*.85+exp(-h*11.)*.2+exp(-h*3.2)*.045;',
-    '  vec3 haloCol=mix(vec3(.16,.25,.5),vec3(.5,.7,1.),sunSide);',
-    '  float dawn=exp(-pow(dot(pn,uSun)/.34,2.));',   /* warm light where the sun grazes the edge */
-    '  haloCol=mix(haloCol,vec3(1.,.62,.36),dawn*.55);',
+    '  vec3 haloCol=mix(vec3(.3,.32,.36),vec3(.86,.89,.94),sunSide);',
+    '  float dawn=exp(-pow(dot(pn,uSun)/.34,2.));',   /* extra brightness where the sun grazes the edge */
+    '  haloCol+=vec3(.2)*dawn;',
     '  vec3 col=INK+vec3(star)*(1.-min(halo*3.,1.))+halo*haloCol*(.17+.83*sunSide);',
     /* --- the planet --- */
     '  if(disc>0.){',
@@ -559,23 +559,23 @@ img,svg,canvas{display:block}
     '    float day=smoothstep(-.1,.3,ndl);',
     '    float diff=pow(max(ndl,0.),.72);',
     '    vec3 land=texture2D(uDay,uv).rgb;',
-    '    land=mix(vec3(dot(land,vec3(.3,.59,.11))),land,.82);',   /* a touch less saturated: cooler, more silver */
-    '    land=pow(land,vec3(.92))*1.12;',
     '    float water=texture2D(uWater,uv).r;',
+    '    float lum=dot(land,vec3(.3,.59,.11));',
+    '    land=vec3(mix(pow(lum,.92)*.98+.04,lum*.4+.008,water))*vec3(.96,.975,1.);',   /* one faint cool cast: silver, not grey */
     '    float cloud=texture2D(uCloud,vec2(uv.x+uTime*.00045,uv.y)).r;',
     '    cloud=smoothstep(.03,.74,cloud);',
     '    vec3 surf=land*(.012+1.5*diff);',
     '    float spec=pow(max(dot(n,normalize(uSun-rd)),0.),38.);',
-    '    surf+=spec*water*vec3(1.,.9,.74)*.55;',                  /* sunlight glinting off the ocean */
+    '    surf+=spec*water*vec3(.95,.97,1.)*.5;',                   /* sunlight glinting off the ocean */
     '    surf=mix(surf,vec3(.97,.98,1.)*(.03+1.32*diff),cloud*.88);',
     '    float band=exp(-pow((ndl-.07)/.15,2.));',
-    '    surf+=band*vec3(1.,.42,.14)*(.05+.2*cloud);',             /* sunrise colour along the line between night and day */
+    '    surf+=band*vec3(.9,.92,.96)*(.02+.1*cloud);',             /* a soft lift along the line between night and day */
     '    vec3 nt=texture2D(uNight,uv).rgb;',
     '    float glow=smoothstep(.03,.42,max(nt.r,nt.g)-nt.b*.62);',
-    '    vec3 night=glow*vec3(1.,.74,.4)*3.4*(1.-cloud*.6)+nt*vec3(.5,.62,.9)*.12;',   /* city lights, plus a trace of moonlit land */
+    '    vec3 night=glow*vec3(1.,.985,.96)*3.2*(1.-cloud*.6)+vec3(dot(nt,vec3(.3,.59,.11)))*.1;',   /* city lights in white, plus a trace of moonlit land */
     '    vec3 s=surf+night*(1.-day);',
     '    float fres=pow(1.-max(dot(n,-rd),0.),3.);',
-    '    s+=fres*mix(vec3(.5,.7,1.),vec3(1.,.62,.36),dawn*.5)*(.05+1.05*smoothstep(-.3,.5,ndl));',
+    '    s+=fres*vec3(.84,.88,.94)*(1.+.3*dawn)*(.05+.95*smoothstep(-.3,.5,ndl));',
     '    col=mix(col,s,clamp((1.-dist)*uR+.5,0.,1.));',
     '  }',
     '  col=col/(1.+col*.18);',                       /* soften the very brightest highlights */
@@ -698,7 +698,7 @@ img,svg,canvas{display:block}
         q = pts[j]; var q0 = pts[j - 1];
         if (q.hidden || q0.hidden || q.a <= 0) continue;
         actx.beginPath(); actx.moveTo(q0.x, q0.y); actx.lineTo(q.x, q.y);
-        actx.lineWidth = 3.5; actx.strokeStyle = 'rgba(190,210,255,' + (0.1 * q.a).toFixed(3) + ')'; actx.stroke();
+        actx.lineWidth = 3.5; actx.strokeStyle = 'rgba(225,228,235,' + (0.1 * q.a).toFixed(3) + ')'; actx.stroke();
         actx.lineWidth = 1; actx.strokeStyle = 'rgba(240,243,250,' + (0.66 * q.a).toFixed(3) + ')'; actx.stroke();
       }
       /* the two ends */
@@ -714,8 +714,8 @@ img,svg,canvas{display:block}
             var fade = Math.sin(Math.PI * c) * q.a;
             var g = actx.createRadialGradient(q.x, q.y, 0, q.x, q.y, 9);
             g.addColorStop(0, 'rgba(255,255,255,' + (0.9 * fade).toFixed(3) + ')');
-            g.addColorStop(0.3, 'rgba(210,225,255,' + (0.3 * fade).toFixed(3) + ')');
-            g.addColorStop(1, 'rgba(210,225,255,0)');
+            g.addColorStop(0.3, 'rgba(235,238,245,' + (0.3 * fade).toFixed(3) + ')');
+            g.addColorStop(1, 'rgba(235,238,245,0)');
             actx.fillStyle = g; actx.beginPath(); actx.arc(q.x, q.y, 9, 0, 6.2832); actx.fill();
           }
         }
