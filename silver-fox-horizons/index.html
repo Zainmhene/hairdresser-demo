@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silver Fox Horizons | International Strategic Advisory</title>
+<meta name="description" content="Silver Fox Horizons is an international strategic advisory firm partnering with governments, institutions and businesses to strengthen state capacity, elevate global influence and unlock investment opportunities across Africa.">
+<!-- DRAFT: remove this line when the site goes live so Google can list it -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Silver Fox Horizons | International Strategic Advisory">
+<meta property="og:description" content="Partnering with governments, institutions and businesses to strengthen state capacity, elevate global influence and unlock investment opportunities across Africa.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3Cpath d='M4 19.5h24' stroke='%23e9e8e4' stroke-width='1.4'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ---------- Typefaces (hosted with the site, no outside requests) ---------- */
+@font-face{font-family:"Instrument Serif";src:url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url("fonts/instrument-serif-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* ---------- Design tokens ---------- */
+:root{
+  --ink:#0a0a0b;            /* page black */
+  --ink-raise:#101012;      /* slightly lifted black */
+  --text:#efeeea;           /* warm white */
+  --text-soft:#b9b9b6;      /* body copy on black */
+  --muted:#8b8c8f;          /* labels on black */
+  --silver:#c9ccd1;         /* the one accent */
+  --line:rgba(255,255,255,.13);
+  --line-strong:rgba(255,255,255,.28);
+  --paper:#f2f0eb;          /* the single light band */
+  --paper-text:#0e0e10;
+  --paper-soft:#4c4c50;
+  --paper-line:rgba(10,10,11,.16);
+  --serif:"Instrument Serif","Iowan Old Style","Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --gutter:clamp(20px,5vw,72px);
+  --max:1320px;
+  --section:clamp(88px,13vw,184px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+img,svg,canvas{display:block}
+::selection{background:var(--silver);color:var(--ink)}
+:focus-visible{outline:2px solid var(--silver);outline-offset:4px;border-radius:2px}
+
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:var(--gutter);top:-80px;z-index:100;background:var(--text);color:var(--ink);padding:12px 18px;font-size:.875rem;font-weight:500;transition:top .2s}
+.skip:focus{top:12px}
+
+/* Small uppercase label used throughout */
+.label{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.label b{font-weight:500;color:var(--silver);margin-right:.9em;font-variant-numeric:tabular-nums}
+
+/* ---------- Header ---------- */
+.header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background-color .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+.header.is-stuck{background:rgba(10,10,11,.86);-webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);border-bottom-color:var(--line)}
+.header__in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:inline-flex;align-items:center;gap:14px;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;min-height:44px}
+.brand svg{width:26px;height:26px;flex:none}
+.nav{display:flex;align-items:center;gap:clamp(22px,3vw,44px)}
+.nav a:not(.btn){position:relative;font-size:.84rem;color:var(--text-soft);padding:12px 0;transition:color .25s}
+.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:var(--text);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:not(.btn):hover{color:var(--text)}
+.nav a:not(.btn):hover::after{transform:scaleX(1)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 26px;border:1px solid var(--line-strong);font-size:.84rem;font-weight:500;letter-spacing:.02em;color:var(--text);transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);cursor:pointer}
+.btn svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.btn:hover{background:var(--text);border-color:var(--text);color:var(--ink)}
+.btn:hover svg{transform:translateX(4px)}
+.btn--solid{background:var(--text);border-color:var(--text);color:var(--ink)}
+.btn--solid:hover{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn--small{min-height:42px;padding:0 20px}
+
+.menu-btn{display:none;width:48px;height:48px;margin-right:-12px;background:none;border:0;color:var(--text);cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:12px;right:12px;height:1px;background:currentColor;transition:transform .35s var(--ease),top .35s var(--ease)}
+.menu-btn span:first-child{top:20px}
+.menu-btn span:last-child{top:28px}
+.menu-btn[aria-expanded="true"] span:first-child{top:24px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:last-child{top:24px;transform:rotate(-45deg)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.hero__globe{position:absolute;z-index:-1;top:59%;right:-11vw;width:min(96vh,60vw);aspect-ratio:1;transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity 2.4s ease .3s;
+  -webkit-mask-image:radial-gradient(circle at 30% 26%,#000 0%,rgba(0,0,0,.55) 42%,transparent 74%);
+          mask-image:radial-gradient(circle at 30% 26%,#000 0%,rgba(0,0,0,.55) 42%,transparent 74%)}
+.hero__globe.is-ready{opacity:1}
+.hero__globe canvas{width:100%;height:100%;transform:rotate(-14deg)}
+.hero::after{content:"";position:absolute;z-index:-1;inset:auto 0 0 0;height:38%;background:linear-gradient(to top,var(--ink) 8%,transparent);pointer-events:none}
+.hero__in{padding-top:128px;padding-bottom:clamp(36px,6vh,72px)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,min(7vw,11.5vh),6.4rem);line-height:1;letter-spacing:-.012em;margin-top:clamp(20px,3vh,32px)}
+.hero h1 span{display:block}
+.hero h1 em{font-style:italic;color:var(--silver)}
+.hero__lead{max-width:39ch;margin-top:clamp(24px,4vh,40px);font-size:clamp(1.0625rem,1.35vw,1.25rem);line-height:1.55;color:var(--text-soft)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(28px,4.5vh,44px)}
+.hero__foot{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:clamp(44px,8vh,96px);padding-top:22px;border-top:1px solid var(--line)}
+.hero__foot ul{display:flex;flex-wrap:wrap;gap:6px 0}
+.hero__foot li+li::before{content:"";display:inline-block;width:22px;height:1px;background:var(--line-strong);vertical-align:middle;margin:0 16px}
+.scroll-cue{display:inline-flex;align-items:center;gap:12px;min-height:44px;white-space:nowrap}
+.scroll-cue i{display:block;width:1px;height:28px;background:linear-gradient(var(--silver),transparent)}
+
+/* ---------- Sections ---------- */
+.section{padding-block:var(--section)}
+.section--line{border-top:1px solid var(--line)}
+.split{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(28px,4vw,64px)}
+
+/* Mandate */
+.mandate p{font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,3.25rem);line-height:1.14;letter-spacing:-.008em;max-width:25em;text-wrap:pretty}
+.mandate p em{font-style:italic;color:var(--silver)}
+.axis-label{margin-top:clamp(56px,8vw,112px);padding-bottom:18px}
+.axis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.axis li{padding:24px clamp(16px,2.4vw,36px) 4px 0;font-family:var(--serif);font-size:clamp(1.5rem,2.3vw,2.1rem);line-height:1.15}
+.axis li+li{padding-left:clamp(16px,2.4vw,36px);border-left:1px solid var(--line)}
+
+/* Expertise */
+.section-head{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(28px,4vw,64px);margin-bottom:clamp(48px,7vw,96px)}
+.section-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,4.5rem);line-height:1.02;letter-spacing:-.012em;max-width:13em;text-wrap:balance}
+.section-head h2 em{font-style:italic;color:var(--silver)}
+.pillar{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr) minmax(0,4fr);gap:clamp(20px,4vw,64px);padding-block:clamp(40px,5.5vw,72px);border-top:1px solid var(--line);position:relative}
+.pillar:last-child{border-bottom:1px solid var(--line)}
+.pillar::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--silver);transition:width 1.1s var(--ease)}
+.pillar.is-in::before{width:clamp(48px,8vw,120px)}
+.pillar__no{font-family:var(--serif);font-size:clamp(2.4rem,4.4vw,4rem);line-height:.9;color:var(--silver)}
+.pillar h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,2.7vw,2.5rem);line-height:1.1;letter-spacing:-.008em;text-wrap:balance}
+.pillar__body p{color:var(--text-soft);max-width:36em}
+.pillar__body ul{margin-top:26px;border-top:1px solid var(--line)}
+.pillar__body li{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--text)}
+.pillar__body li::before{content:"";flex:none;width:5px;height:5px;border:1px solid var(--silver);transform:translateY(-2px) rotate(45deg)}
+
+/* Partners: the one light band */
+.paper{background:var(--paper);color:var(--paper-text)}
+.paper .label{color:var(--paper-soft)}
+.paper .label b{color:var(--paper-text)}
+.paper .section-head h2 em{color:var(--paper-soft)}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--paper-text)}
+.who article{padding:30px clamp(18px,2.6vw,40px) 6px 0}
+.who article+article{padding-left:clamp(18px,2.6vw,40px);border-left:1px solid var(--paper-line)}
+.who h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:1.1;margin:clamp(40px,6vw,88px) 0 16px}
+.who p{color:var(--paper-soft);font-size:1rem;max-width:30em}
+
+/* Contact */
+.contact{text-align:left;position:relative;overflow:hidden}
+.contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,8.6vw,8.25rem);line-height:.96;letter-spacing:-.018em;margin-top:28px}
+.contact h2 em{font-style:italic;color:var(--silver)}
+.contact__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px;margin-top:clamp(40px,6vw,80px);padding-top:32px;border-top:1px solid var(--line)}
+.contact__row p{max-width:34em;color:var(--text-soft)}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);padding-block:clamp(44px,6vw,72px) 36px}
+.footer__top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,3fr) minmax(0,3fr);gap:40px clamp(28px,4vw,64px)}
+.footer__top p{margin-top:22px;max-width:32em;font-size:.92rem;color:var(--muted)}
+.footer h2{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.footer li a{display:inline-flex;align-items:center;min-height:40px;font-size:.92rem;color:var(--text-soft);transition:color .25s}
+.footer li a:hover{color:var(--text)}
+.footer__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;margin-top:clamp(48px,7vw,88px);padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+
+/* ---------- Motion (only when JavaScript is running) ---------- */
+.js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.js [data-reveal].is-in{opacity:1;transform:none}
+.js .hero h1 span{opacity:0;transform:translateY(.35em);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.js .hero h1 span:nth-child(2){transition-delay:.12s}
+.js .hero h1 span:nth-child(3){transition-delay:.24s}
+.js .hero.is-in h1 span{opacity:1;transform:none}
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width:900px){
+  .nav{position:fixed;inset:0;z-index:-1;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:96px var(--gutter) 48px;background:var(--ink);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s linear .35s}
+  .nav.is-open{opacity:1;visibility:visible;transition-delay:0s}
+  .nav a:not(.btn){font-family:var(--serif);font-size:clamp(2.2rem,9vw,3rem);line-height:1.1;color:var(--text);padding:10px 0}
+  .nav a:not(.btn)::after{display:none}
+  .nav .btn{margin-top:28px}
+  .menu-btn{display:block}
+  .split,.section-head{grid-template-columns:1fr;gap:22px}
+  .pillar{grid-template-columns:1fr;gap:18px}
+  .pillar__no{font-size:2.4rem}
+  .axis,.who{grid-template-columns:1fr}
+  .axis li,.axis li+li{padding:18px 0;border-left:0}
+  .axis li+li{border-top:1px solid var(--line)}
+  .who article,.who article+article{padding:26px 0 30px;border-left:0}
+  .who article+article{border-top:1px solid var(--paper-line)}
+  .who h3{margin-top:22px}
+  .footer__top{grid-template-columns:1fr 1fr}
+  .footer__top>div:first-child{grid-column:1/-1}
+  .hero__globe{top:auto;bottom:-78vw;right:-30vw;width:140vw;transform:none;
+    -webkit-mask-image:radial-gradient(circle at 34% 22%,#000 0%,rgba(0,0,0,.5) 40%,transparent 70%);
+            mask-image:radial-gradient(circle at 34% 22%,#000 0%,rgba(0,0,0,.5) 40%,transparent 70%)}
+  .hero__foot .scroll-cue{display:none}
+  .hero::after{height:16%}
+  .hero__cta .btn:not(.btn--solid){background:var(--ink)}
+}
+@media (max-width:520px){
+  .brand{letter-spacing:.2em;font-size:.68rem;gap:11px}
+  .hero__cta .btn{flex:1 1 100%}
+  .hero__foot ul{letter-spacing:.14em;font-size:.66rem}
+  .hero__foot li+li::before{width:10px;margin:0 9px}
+  .contact__row .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;transition-delay:0s !important;animation:none !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="wrap header__in">
+    <a class="brand" href="#top" aria-label="Silver Fox Horizons, back to top">
+      <!-- Placeholder mark (a horizon line). Swap for the real logo when supplied. -->
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="16" cy="16" r="11.4"/><path d="M1 20h30"/></svg>
+      Silver Fox Horizons
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#mandate">Mandate</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#partners">Who we work with</a>
+      <a class="btn btn--small" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__globe" id="globeBox" aria-hidden="true"><canvas id="globe"></canvas></div>
+    <div class="wrap hero__in">
+      <p class="label">International Strategic Advisory</p>
+      <h1 id="hero-title">
+        <span>Strengthening states.</span>
+        <span>Elevating influence.</span>
+        <span><em>Unlocking investment.</em></span>
+      </h1>
+      <p class="hero__lead" data-reveal style="--d:380ms">Strategic counsel for governments, institutions and businesses, at the intersection of statecraft, international positioning and investment diplomacy across Africa.</p>
+      <div class="hero__cta" data-reveal style="--d:480ms">
+        <a class="btn btn--solid" href="#expertise">Our expertise
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5"/></svg>
+        </a>
+        <a class="btn" href="#contact">Start a conversation</a>
+      </div>
+      <div class="hero__foot" data-reveal style="--d:600ms">
+        <ul class="label" aria-label="Who we partner with">
+          <li>Governments</li><li>Institutions</li><li>Businesses</li>
+        </ul>
+        <a class="label scroll-cue" href="#mandate">Scroll <i></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANDATE ============ -->
+  <section class="section" id="mandate" aria-labelledby="mandate-label">
+    <div class="wrap">
+      <div class="split mandate">
+        <h2 class="label" id="mandate-label" data-reveal><b>01</b>Our mandate</h2>
+        <p data-reveal>Silver Fox Horizons is an international strategic advisory firm partnering with governments, institutions and businesses to <em>strengthen state capacity</em>, <em>elevate global influence</em> and <em>unlock investment opportunities</em> across Africa.</p>
+      </div>
+      <p class="label axis-label" id="axis-label" data-reveal>Working at the intersection of</p>
+      <ul class="axis" aria-labelledby="axis-label">
+        <li data-reveal>Statecraft</li>
+        <li data-reveal style="--d:90ms">International positioning</li>
+        <li data-reveal style="--d:180ms">Investment diplomacy</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ EXPERTISE ============ -->
+  <section class="section section--line" id="expertise" aria-labelledby="expertise-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label" data-reveal><b>02</b>Expertise</p>
+        <h2 id="expertise-title" data-reveal>Three core areas <em>of expertise.</em></h2>
+      </div>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar__no" aria-hidden="true">01</div>
+        <h3>Statecraft, Governance &amp; Institutional Transformation</h3>
+        <div class="pillar__body">
+          <p>Helping governments strengthen institutional capacity, design and implement reforms, and improve public-sector performance.</p>
+          <ul>
+            <li>Institutional capacity</li>
+            <li>Reform design and implementation</li>
+            <li>Public-sector performance</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar__no" aria-hidden="true">02</div>
+        <h3>Nation Branding, Strategic Communications &amp; Global Positioning</h3>
+        <div class="pillar__body">
+          <p>Supporting governments in strengthening their international reputation, soft power and global visibility.</p>
+          <ul>
+            <li>International reputation</li>
+            <li>Soft power</li>
+            <li>Global visibility</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar__no" aria-hidden="true">03</div>
+        <h3>Investment Diplomacy, Market Access &amp; Strategic Partnerships</h3>
+        <div class="pillar__body">
+          <p>Helping international companies and investors navigate African markets, engage with governments and develop strategic investment and commercial partnerships.</p>
+          <ul>
+            <li>Navigating African markets</li>
+            <li>Government engagement</li>
+            <li>Investment and commercial partnerships</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ WHO WE WORK WITH ============ -->
+  <section class="section paper" id="partners" aria-labelledby="partners-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label" data-reveal><b>03</b>Who we work with</p>
+        <h2 id="partners-title" data-reveal>A partner to those <em>shaping Africa&rsquo;s future.</em></h2>
+      </div>
+      <!-- DRAFT COPY: the three short descriptions below were written from the brief. Client to approve. -->
+      <div class="who">
+        <article data-reveal>
+          <span class="label">i.</span>
+          <h3>Governments</h3>
+          <p>Building the institutional capacity to deliver reform, and the international standing to match national ambition.</p>
+        </article>
+        <article data-reveal style="--d:90ms">
+          <span class="label">ii.</span>
+          <h3>Institutions</h3>
+          <p>Working alongside public and international institutions to turn strategy into lasting capability and influence.</p>
+        </article>
+        <article data-reveal style="--d:180ms">
+          <span class="label">iii.</span>
+          <h3>Businesses &amp; investors</h3>
+          <p>Navigating African markets, engaging with governments and building strategic investment and commercial partnerships.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="label" data-reveal><b>04</b>Contact</p>
+      <h2 id="contact-title" data-reveal>Begin a <em>conversation.</em></h2>
+      <div class="contact__row" data-reveal>
+        <p>For governments, institutions, companies and investors exploring how Silver Fox Horizons can support their objectives across Africa.</p>
+        <!-- PLACEHOLDER ADDRESS: replace with the firm's real enquiries email before going live -->
+        <a class="btn btn--solid" href="mailto:enquiries@silverfoxhorizons.com?subject=Enquiry%20%7C%20Silver%20Fox%20Horizons">Make an enquiry
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand" href="#top" aria-label="Silver Fox Horizons, back to top">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="16" cy="16" r="11.4"/><path d="M1 20h30"/></svg>
+          Silver Fox Horizons
+        </a>
+        <p>An international strategic advisory firm working at the intersection of statecraft, international positioning and investment diplomacy.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h2>Firm</h2>
+        <ul>
+          <li><a href="#mandate">Mandate</a></li>
+          <li><a href="#partners">Who we work with</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Expertise">
+        <h2>Expertise</h2>
+        <ul>
+          <li><a href="#expertise">Statecraft &amp; governance</a></li>
+          <li><a href="#expertise">Nation branding &amp; positioning</a></li>
+          <li><a href="#expertise">Investment diplomacy</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__base">
+      <span>&copy; <span id="year">2026</span> Silver Fox Horizons. All rights reserved.</span>
+      <span>Statecraft &middot; Positioning &middot; Investment</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Header: turns solid once you scroll off the top */
+  var header = document.getElementById('header');
+  function onScroll() { header.classList.toggle('is-stuck', window.scrollY > 24); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Phone menu */
+  var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  function setMenu(open) {
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { setMenu(false); btn.focus(); }
+  });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', function () { setMenu(false); });
+
+  /* Fade sections in as they enter the screen */
+  var hero = document.getElementById('top');
+  requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('is-in'); }); });
+  var items = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* Hero globe: a slowly turning grid of latitude and longitude lines */
+  var box = document.getElementById('globeBox'), cv = document.getElementById('globe');
+  var ctx = cv.getContext && cv.getContext('2d');
+  if (!ctx) return;
+  var RAD = Math.PI / 180, TILT = 16 * RAD, size = 0, R = 0, spin = 20 * RAD, visible = true, last = 0, raf = 0;
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    size = box.clientWidth;
+    cv.width = cv.height = Math.round(size * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    R = size / 2 - 2;
+    draw();
+  }
+  function line(points) {
+    var pen = false;
+    for (var i = 0; i < points.length; i++) {
+      var lat = points[i][0], lon = points[i][1] - spin;
+      var cosc = Math.sin(TILT) * Math.sin(lat) + Math.cos(TILT) * Math.cos(lat) * Math.cos(lon);
+      if (cosc < 0) { pen = false; continue; }
+      var x = size / 2 + R * Math.cos(lat) * Math.sin(lon);
+      var y = size / 2 - R * (Math.cos(TILT) * Math.sin(lat) - Math.sin(TILT) * Math.cos(lat) * Math.cos(lon));
+      if (pen) ctx.lineTo(x, y); else { ctx.moveTo(x, y); pen = true; }
+    }
+  }
+  var grid = [];
+  (function build() {
+    var a, b, pts;
+    for (a = -180; a < 180; a += 15) { pts = []; for (b = -90; b <= 90; b += 3) pts.push([b * RAD, a * RAD]); grid.push(pts); }
+    for (a = -75; a <= 75; a += 15) { pts = []; for (b = -180; b <= 180; b += 3) pts.push([a * RAD, b * RAD]); grid.push(pts); }
+  })();
+  function draw() {
+    ctx.clearRect(0, 0, size, size);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(201,204,209,.34)';
+    ctx.beginPath();
+    for (var i = 0; i < grid.length; i++) line(grid[i]);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(201,204,209,.8)';
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, R, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  function tick(t) {
+    raf = requestAnimationFrame(tick);
+    if (t - last < 33) return;           /* about 30 frames a second is plenty */
+    spin += ((t - last) / 1000) * 0.9 * RAD;  /* under one degree a second */
+    last = t;
+    draw();
+  }
+  function run() {
+    cancelAnimationFrame(raf);
+    if (!reduce && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(tick); }
+  }
+  resize();
+  box.classList.add('is-ready');
+  window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', run);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; run(); }).observe(hero);
+  }
+  run();
+})();
+</script>
+</body>
+</html>
