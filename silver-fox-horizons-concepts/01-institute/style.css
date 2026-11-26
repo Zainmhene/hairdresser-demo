@@ -98,7 +98,7 @@ ul, ol { padding: 0; list-style: none; }
   line-height: .98;
   font-size: clamp(40px, 6.8vw, 106px);
 }
-.hero__title { font-size: clamp(38px, 8.1vw, 118px); }
+.hero__title { font-size: clamp(38px, 7.5vw, 108px); }
 .h2 {
   font-family: var(--display);
   font-weight: 500;
@@ -256,18 +256,18 @@ body.menu-open { overflow: hidden; }
 /* ==========================================================================
    Home — hero
    ========================================================================== */
-.hero { padding-top: calc(var(--header-h) + clamp(44px, 6vw, 92px)); padding-bottom: clamp(56px, 6vw, 88px); }
+.hero { padding-top: calc(var(--header-h) + clamp(32px, 3.6vw, 56px)); padding-bottom: clamp(40px, 4vw, 56px); }
 .hero__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: clamp(28px, 3vw, 44px); gap: 16px; }
 .hero__top .mono { color: var(--grey); }
 .hero__title { max-width: none; }
-.hero__foot { margin-top: clamp(44px, 5.4vw, 84px); align-items: end; }
+.hero__foot { margin-top: clamp(32px, 3.6vw, 56px); align-items: end; }
 .hero__aside { grid-column: 1 / span 4; display: flex; align-items: center; gap: 14px; color: var(--grey); }
 .hero__aside .scroll-cue { width: 1px; height: 44px; background: var(--line); position: relative; overflow: hidden; }
 .hero__aside .scroll-cue::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--ink); animation: cue 2.4s var(--ease) infinite; }
 @keyframes cue { 0% { top: -40%; } 60%, 100% { top: 100%; } }
 .hero__body { grid-column: 6 / span 7; }
 .hero__body .lead { max-width: 36em; }
-.hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 34px; }
+.hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 28px; }
 
 /* ---------- Reel (expanding video) ---------- */
 .reel { position: relative; height: clamp(440px, 86vh, 920px); }

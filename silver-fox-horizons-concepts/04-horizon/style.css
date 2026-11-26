@@ -260,7 +260,7 @@ a:hover > .arrow, button:hover > .arrow { transform: translateX(5px); }
 .hero__shade {
   position: absolute; inset: 0; z-index: -2;
   background:
-    linear-gradient(180deg, rgba(20, 15, 11, .78) 0%, rgba(20, 15, 11, .32) 26%, rgba(20, 15, 11, .12) 42%, rgba(20, 15, 11, .14) 52%, rgba(20, 15, 11, .62) 74%, rgba(20, 15, 11, .88) 100%);
+    linear-gradient(180deg, rgba(46, 16, 10, .62) 0%, rgba(40, 16, 10, .22) 26%, rgba(20, 15, 11, .12) 42%, rgba(20, 15, 11, .14) 52%, rgba(20, 15, 11, .62) 74%, rgba(20, 15, 11, .88) 100%);
 }
 .hero__glow {
   position: absolute; z-index: -1; left: 50%; top: var(--line-y);
