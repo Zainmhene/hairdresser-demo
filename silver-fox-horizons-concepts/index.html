@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Silver Fox Horizons — Five Directions</title>
+<meta name="description" content="Five website design directions for Silver Fox Horizons, an international strategic advisory firm focused on Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F3F0; --surface:#FFFFFF; --ink:#111113; --muted:#6B6B70; --line:#DEDCD6; --accent:#D9531E;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0E0F11; --surface:#16181B; --ink:#EDEDEF; --muted:#9A9CA3; --line:#2A2C31; --accent:#F07A45; }
+}
+:root[data-theme="dark"]{ --bg:#0E0F11; --surface:#16181B; --ink:#EDEDEF; --muted:#9A9CA3; --line:#2A2C31; --accent:#F07A45; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+header{padding:28px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.mark{display:flex;align-items:center;gap:10px;font:500 15px/1 "Inter Tight",sans-serif;letter-spacing:-.01em}
+.mark i{width:9px;height:9px;background:var(--accent);display:inline-block}
+.meta{font-size:13px;color:var(--muted)}
+.intro{padding:96px 0 72px}
+.eyebrow{font:500 12px/1 "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+h1{font:400 clamp(44px,7vw,104px)/.98 "Instrument Serif",serif;letter-spacing:-.02em;max-width:14ch}
+h1 em{color:var(--accent)}
+.lede{margin-top:32px;max-width:62ch;font-size:18px;color:var(--muted)}
+.lede strong{color:var(--ink);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding-bottom:96px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 60px -30px rgba(0,0,0,.35)}
+.card:first-child{grid-column:1/-1}
+.shot{aspect-ratio:16/10;overflow:hidden;background:var(--line);position:relative}
+.card:first-child .shot{aspect-ratio:21/9}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.card:hover .shot img{transform:scale(1.03)}
+.body{padding:28px 28px 30px;display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:start}
+.num{font:400 44px/1 "Instrument Serif",serif;color:var(--muted)}
+.title{font:500 26px/1.15 "Inter Tight",sans-serif;letter-spacing:-.02em}
+.desc{grid-column:2;color:var(--muted);font-size:15px;max-width:60ch}
+.facts{grid-column:2;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:14px;font-size:13px;color:var(--muted)}
+.sw{display:flex;gap:4px}.sw span{width:18px;height:18px;border-radius:50%;border:1px solid var(--line)}
+.go{grid-column:2;margin-top:18px;font:500 14px/1 "Inter",sans-serif;display:inline-flex;gap:8px;align-items:center}
+.go b{color:var(--accent);font-weight:500;transition:transform .3s}
+.card:hover .go b{transform:translateX(4px)}
+.pages{grid-column:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pages a{font-size:12px;border:1px solid var(--line);padding:5px 10px;border-radius:99px;color:var(--muted)}
+.pages a:hover{color:var(--ink);border-color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:860px){
+  .wrap{padding:0 16px}
+  .grid{grid-template-columns:1fr;gap:20px}
+  .card:first-child .shot{aspect-ratio:16/10}
+  .intro{padding:64px 0 48px}
+  .body{grid-template-columns:1fr;padding:22px 20px 24px}
+  .desc,.facts,.go,.pages{grid-column:1}
+  .num{font-size:34px}
+  .meta{display:none}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="mark"><i></i>Silver Fox Horizons</span><span class="meta">Website directions · November 2026 · by TSUGI</span></div></header>
+<main class="wrap">
+  <section class="intro">
+    <p class="eyebrow">Design proposal</p>
+    <h1>Five directions for <em>one</em> clear mandate.</h1>
+    <p class="lede"><strong>Silver Fox Horizons is an international strategic advisory firm partnering with governments, institutions and businesses to strengthen state capacity, elevate global influence and unlock investment opportunities across Africa.</strong> Each concept below expresses that mandate in its own visual language. All five are working, responsive websites. Open one, scroll, and see which feels most like you.</p>
+  </section>
+  <section class="grid" id="concepts"></section>
+</main>
+<footer><div class="wrap"><span>Demo concepts. Photography and film: Pexels. Logo, biographies and contact details to follow from the client.</span><a href="https://tsugidigital.com">Website by TSUGI</a></div></footer>
+<script>
+const C=[
+ {n:"01",slug:"01-institute",t:"Institute",d:"Closest to the Tony Blair Institute reference: white space, a confident grotesk, one amber accent drawn from the fox. Calm, rigorous, policy-grade.",sw:["#FFFFFF","#0C0C0D","#D9531E","#F4F3F0"],f:"Inter Tight · Inter"},
+ {n:"02",slug:"02-chancery",t:"Chancery",d:"Diplomatic editorial. Ivory paper, ink navy and brass hairlines, classical serif typography and black-and-white photography. An embassy library meets a serious quarterly journal.",sw:["#F6F2EA","#0F1B2D","#9C7C4E","#7A746B"],f:"Cormorant Garamond · Inter"},
+ {n:"03",slug:"03-nocturne",t:"Nocturne",d:"Africa seen from above at night, in silver rather than gold. An interactive dot-map of the continent, with live arcs to the world's capitals, shows investment diplomacy at a glance.",sw:["#06080D","#D9DCE1","#7FA7FF","#0D111A"],f:"Instrument Serif · Geist"},
+ {n:"04",slug:"04-horizon",t:"Horizon",d:"Cinematic and warm. The 'horizon line' becomes the brand device: letterbox film opening, and the three practices as chapters in a horizontal scroll.",sw:["#EFE7DA","#221A14","#A84E2C","#C99A5B"],f:"Fraunces · Manrope"},
+ {n:"05",slug:"05-malachite",t:"Malachite",d:"Sovereign luxury with African identity. Deep malachite green, brass and cream, arch-framed imagery and an original geometric pattern system.",sw:["#0B2E24","#F3ECDF","#B38B4D","#071F18"],f:"Marcellus · Cormorant · Jost"}
+];
+const P=[["index.html","Home"],["expertise.html","Expertise"],["about.html","About"],["insights.html","Insights"],["contact.html","Contact"]];
+document.getElementById('concepts').innerHTML=C.map(c=>`
+<article class="card">
+  <a class="shot" href="${c.slug}/index.html" aria-label="Open concept ${c.n}, ${c.t}"><img src="previews/${c.slug}.jpg" alt="Homepage preview of concept ${c.n}, ${c.t}" loading="lazy"></a>
+  <div class="body">
+    <span class="num">${c.n}</span>
+    <div>
+      <h2 class="title"><a href="${c.slug}/index.html">${c.t}</a></h2>
+    </div>
+    <p class="desc">${c.d}</p>
+    <div class="facts"><span class="sw">${c.sw.map(s=>`<span style="background:${s}"></span>`).join('')}</span><span>${c.f}</span></div>
+    <nav class="pages" aria-label="${c.t} pages">${P.map(p=>`<a href="${c.slug}/${p[0]}">${p[1]}</a>`).join('')}</nav>
+    <a class="go" href="${c.slug}/index.html">View concept <b>→</b></a>
+  </div>
+</article>`).join('');
+</script>
+</body>
+</html>
