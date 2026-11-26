@@ -484,7 +484,7 @@ a:hover > .arrow, button:hover > .arrow { transform: translateX(5px); }
 .footer__col a:hover { color: var(--bone); }
 .footer__word {
   margin-top: clamp(72px, 9vw, 130px); position: relative;
-  font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 15.2vw, 232px); line-height: .9; letter-spacing: -.045em; white-space: nowrap;
+  font-family: var(--serif); font-weight: 300; font-size: clamp(42px, 14.2vw, 216px); line-height: .9; letter-spacing: -.045em; margin-bottom: clamp(20px, 2.4vw, 36px); white-space: nowrap;
   color: rgba(248, 244, 237, .94); font-variation-settings: "SOFT" 100, "opsz" 144;
   padding-bottom: .1em;
 }

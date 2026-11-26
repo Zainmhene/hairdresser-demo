@@ -177,7 +177,7 @@
   /* Closing: the sun rises on the horizon */
   var sun = d.querySelector('.closing__sun');
   if (sun) {
-    gsap.fromTo(sun, { x: 0, y: 0, xPercent: -50, yPercent: 95 }, { yPercent: 46, ease: 'none', scrollTrigger: { trigger: '.closing', start: 'top 95%', end: 'top 15%', scrub: 1 } });
+    gsap.fromTo(sun, { x: 0, y: 0, xPercent: -50, yPercent: 80 }, { yPercent: 46, ease: 'none', scrollTrigger: { trigger: '.closing', start: 'top 95%', end: 'top 15%', scrub: 1 } });
   }
 
   /* About: timeline along the horizon */
