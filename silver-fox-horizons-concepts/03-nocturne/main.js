@@ -254,11 +254,12 @@
   var heroLines = $$('.hero h1 .line > span, .page-hero h1 .line > span');
   if (heroLines.length) {
     var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.from(heroLines, { yPercent: 115, duration: 1.6, stagger: 0.12 }, 0.15)
-      .from('.hero .label, .page-hero .label', { opacity: 0, y: 12, duration: 1.2 }, 0.1)
-      .from('.hero-copy > *, .page-hero .ph-row > *', { opacity: 0, y: 20, duration: 1.4, stagger: 0.1 }, 0.6)
-      .from('.clocks li, .clocks-title', { opacity: 0, x: 16, duration: 1.2, stagger: 0.07 }, 0.8)
-      .from('.hero-media', { opacity: 0, scale: 1.08, duration: 2.6, ease: 'power2.out' }, 0);
+    var add = function (sel, vars, at) { var els = $$(sel); if (els.length) tl.from(els, vars, at); };
+    tl.from(heroLines, { yPercent: 115, duration: 1.6, stagger: 0.12 }, 0.15);
+    add('.hero .label, .page-hero .label', { opacity: 0, y: 12, duration: 1.2 }, 0.1);
+    add('.hero-copy > *, .page-hero .ph-row > *', { opacity: 0, y: 20, duration: 1.4, stagger: 0.1 }, 0.6);
+    add('.clocks li, .clocks-title', { opacity: 0, x: 16, duration: 1.2, stagger: 0.07 }, 0.8);
+    add('.hero-media', { opacity: 0, scale: 1.08, duration: 2.6, ease: 'power2.out' }, 0);
   }
 
   // hero parallax

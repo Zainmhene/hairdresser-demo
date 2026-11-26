@@ -463,7 +463,7 @@ a:hover > .arrow, button:hover > .arrow { transform: translateX(5px); }
 .closing__sun {
   position: absolute; left: 50%; bottom: 0; width: clamp(360px, 62vw, 980px); aspect-ratio: 1; border-radius: 50%;
   transform: translate(-50%, 50%);
-  background: radial-gradient(circle at 50% 50%, #EFE7DA 0%, #E5C7A0 18%, #C99A5B 40%, #B76A3C 62%, #A84E2C 76%, rgba(168, 78, 44, 0) 77%);
+  background: radial-gradient(circle at 50% 50%, #F8EBD6 0%, #EBCFA6 16%, #D6AE76 32%, #C99A5B 42%, rgba(183, 106, 60, .9) 56%, rgba(168, 78, 44, .45) 66%, rgba(168, 78, 44, .12) 72%, rgba(168, 78, 44, 0) 76%);
 }
 .closing__haze { position: absolute; inset: auto 0 0 0; height: 70%; background: linear-gradient(180deg, rgba(239, 231, 218, 0), rgba(201, 154, 91, .22)); pointer-events: none; }
 .closing__title { position: absolute; left: 0; right: 0; top: 0; z-index: 2; padding-inline: var(--gutter); }
@@ -601,7 +601,8 @@ a:hover > .arrow, button:hover > .arrow { transform: translateX(5px); }
 fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .radio-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
 .radio-chips label { cursor: pointer; }
-.radio-chips input { position: absolute; opacity: 0; pointer-events: none; }
+.radio-chips label { position: relative; }
+.radio-chips input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .radio-chips span { display: inline-block; border: 1px solid var(--line-strong); border-radius: 999px; padding: 9px 16px; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--ink); transition: background .3s, color .3s, border-color .3s; }
 .radio-chips input:checked + span { background: var(--earth); color: var(--bone); border-color: var(--earth); }
 .radio-chips input:focus-visible + span { outline: 2px solid var(--terra); outline-offset: 3px; }
@@ -694,7 +695,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   .timeline__steps { grid-template-columns: 1fr; row-gap: 44px; }
   .step::before { left: -33px; right: auto; top: 6px; bottom: -44px; width: 1px; height: auto; }
   .step:last-child::before { display: none; }
-  .step__sun { left: -44px; top: 0; transform: rotate(90deg); transform-origin: 11px 11px; }
+  .step__sun { left: -39px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 1px solid var(--line-strong); }
   .step__num { position: static; display: block; margin-bottom: 6px; }
   .leader { grid-template-columns: 1fr; }
   .leader__portrait { aspect-ratio: 4 / 3.4; }

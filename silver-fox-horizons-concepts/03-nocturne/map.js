@@ -187,7 +187,8 @@
     this.c.height = Math.round(h * dpr);
 
     var bw = BOUNDS.x1 - BOUNDS.x0, bh = BOUNDS.y1 - BOUNDS.y0;
-    var sc = Math.min(w * (1 - 2 * this.o.padX) / bw, h * (1 - 2 * this.o.padY) / bh);
+    var padY = w < 600 ? 0.035 : this.o.padY;
+    var sc = Math.min(w * (1 - 2 * this.o.padX) / bw, h * (1 - 2 * padY) / bh);
     this.sc = sc;
     this.ox = (w - bw * sc) / 2 - BOUNDS.x0 * sc + this.o.shiftX * w;
     this.oy = (h - bh * sc) / 2 + BOUNDS.y1 * sc;
@@ -549,7 +550,7 @@
         ctx.beginPath(); ctx.arc(g.x, g.y, 2, 0, TAU); ctx.fill();
         ctx.strokeStyle = 'rgba(127,167,255,0.35)';
         ctx.beginPath(); ctx.arc(g.x, g.y, 5.5, 0, TAU); ctx.stroke();
-        if (this.o.labels) {
+        if (this.o.labels && w >= 600) {
           var label = g.d.n.toUpperCase();
           ctx.fillStyle = 'rgba(138,144,156,0.95)';
           var lx = g.x, ly = g.y, align = 'left';
