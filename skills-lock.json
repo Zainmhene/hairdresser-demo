@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "skills": {
+    "viral-short-form": {
+      "source": "vyralcontent/content-skills",
+      "commit": "349e495d97029a3e6303a7510e3f39c73f36d8fe",
+      "sourceType": "github",
+      "skillPath": "skills/viral-short-form/SKILL.md",
+      "computedHash": "bb4330fe033473d1a375d12e97a2e536eef59bec9f53bbf89179b434cd7c0347"
+    }
+  }
+}
